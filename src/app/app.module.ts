@@ -20,4 +20,9 @@ import { AppComponent } from './app.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+    constructor(private statusBar: StatusBar) {
+        // 沉浸式并且悬浮透明
+        this.statusBar.overlaysWebView(true);
+    }
+}

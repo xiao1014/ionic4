@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { InfiniteScroll } from '@ionic/angular';
+import {InfiniteScroll} from '@ionic/angular';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-news',
@@ -42,7 +43,7 @@ export class NewsPage implements OnInit {
 
     @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
 
-    constructor() { }
+    constructor(private router: Router) {}
 
     loadData(event) {
         setTimeout(() => {
@@ -58,6 +59,12 @@ export class NewsPage implements OnInit {
                 event.target.disabled = true;
             }
         }, 500);
+    }
+
+    goNewsDetail(name) {
+        this.router.navigateByUrl(
+            this.router.createUrlTree(['/NewsDetail'], {queryParams: {name: name}})
+        );
     }
 
     toggleInfiniteScroll() {

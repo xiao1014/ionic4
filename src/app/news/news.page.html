@@ -1,29 +1,32 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>news1</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>news</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-button (click)="toggleInfiniteScroll()" expand="block">
-    Toggle Infinite Scroll
-  </ion-button>
+    <ion-button (click)="toggleInfiniteScroll()" expand="block">
+        Toggle Infinite Scroll
+    </ion-button>
 
-  <!--
-    <li *ngFor="let user of userObservable | async as users; index as i; first as isFirst">
-       {{i}}/{{users.length}}. {{user}} <span *ngIf="isFirst">default</span>
-    </li>
-  -->
-  <ion-list *ngFor="let new of newsList; index as i; first as isFirst">
-    <ion-item *ngIf="new.name">
-      <ion-label>{{new.name}}</ion-label>
-    </ion-item>
-  </ion-list>
+    <!--
+      <li *ngFor="let user of userObservable | async as users; index as i; first as isFirst">
+         {{i}}/{{users.length}}. {{user}} <span *ngIf="isFirst">default</span>
+      </li>
+    -->
+    <!--<a [routerLink]="['/Questions']" [queryParams]="{id:1234,page:1}"></a>-->
+    <ion-list *ngFor="let new of newsList; index as i; first as isFirst">
+        <ion-label (click)="goNewsDetail(new.name)" *ngIf="new.name">
+            <ion-item>
+                {{new.name}}
+            </ion-item>
+        </ion-label>
+    </ion-list>
 
-  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content
-            loadingSpinner="bubbles"
-            loadingText="Loading more data...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content
+                loadingSpinner="bubbles"
+                loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>
